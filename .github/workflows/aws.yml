@@ -1,0 +1,20 @@
+name: remote ssh command
+on: 
+  push: 
+    branches:
+      [main]
+    
+jobs:
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: executing remote ssh commands using ssh key
+      uses: appleboy/ssh-action@master
+      with:
+        host: ec2-174-129-44-24.compute-1.amazonaws.com
+        username: ec2-user
+        key: ${{ secrets.RSA_PRIVATE_KEY }}
+        port: 22
+      
